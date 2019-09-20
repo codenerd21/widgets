@@ -7,8 +7,12 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <title>Wacky Widget</title>
 </head>
-<h1>Wacky Widget</h1>
 <body>
+  <h1>Wacky Widget</h1>
+  {% if widget_list.length == 0 %}
+    <h3>No Widgets Exist</h3>
+  {% else %}
+  {% endif %}
   <table>
     <thead>
       <th>Description:</th>
@@ -16,11 +20,14 @@
       <th>Delete:</th>
     <t/head>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      {% for w in widget_list %}
+        <tr>
+          <td>{{ w.description }}</td>
+          <td>{{ w.quantity }}</td>
+          <td>
+            <a href="{% url 'delete' w.id %}">Delete</a>
+          </td>
+        </tr>
     </tbody>
   </table>
   <hr>
