@@ -12,3 +12,9 @@ def home(request):
     form = WidgetForm()
   return render(request, 'home.html', {'form': form, 'widget_list': widget_list})
 
+def delete(request, w_id):
+  widget = Widget.objects.get(id=w_id)
+  widget.delete()
+  return redirect('home')
+
+  
